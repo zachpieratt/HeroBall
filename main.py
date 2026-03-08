@@ -44,29 +44,20 @@ def main():
             rect = rendered.get_rect(center=(center_x, top_y + i * 25))
 
             screen.blit(rendered, rect)
-    # --------------------------------------------------
-    # MATCH CREATION UI
-    # --------------------------------------------------
-
+#create match
     selected_hero=0
     boss_health_text="1000000"
 
     state="menu"
 
-    # --------------------------------------------------
-    # GAME VARIABLES
-    # --------------------------------------------------
-
+#game variables
     heroes=[]
     boss=None
     damage_numbers=[]
 
     start_time=0
 
-    # --------------------------------------------------
-    # MAIN LOOP
-    # --------------------------------------------------
-
+#main loop
     running=True
 
     while running:
@@ -112,9 +103,7 @@ def main():
 
         screen.fill((20,20,20))
 
-        # --------------------------------------------------
-        # MENU
-        # --------------------------------------------------
+#menu stuff
 
         if state=="menu":
 
@@ -141,9 +130,8 @@ def main():
             start_text=font.render("Press ENTER to start",True,(200,200,200))
             screen.blit(start_text,(100,650))
 
-        # --------------------------------------------------
-        # GAME
-        # --------------------------------------------------
+#actual game logic
+
         if state=="fight":
 
             elapsed = (pygame.time.get_ticks() - start_time) / 1000
@@ -178,7 +166,7 @@ def main():
                 for hero in heroes[:]:
                     check_collision(hero, boss, heroes, font, damage_numbers)
 
-            # win condition
+ # hero wins
             if boss.health <= 0:
                 boss.health = 0
                 state = "menu"
@@ -191,7 +179,7 @@ def main():
 
             boss.draw(screen)
 
-            # damage numbers
+#dmg number effects
             for d in damage_numbers[:]:
 
                 d.update()
@@ -200,7 +188,7 @@ def main():
                 if d.life<=0:
                     damage_numbers.remove(d)
 
-            # particles
+#particle effects
             for p in particles[:]:
 
                 p.update()

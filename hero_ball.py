@@ -103,6 +103,6 @@ class HeroBall:
 
             if random.random() < 0.7 or self.damage == 1:
                 self.damage *= 7
-                self.flash_timer = 10   # trigger gold flash on successful gamble
+                self.flash_timer = 10   
             else:
                 self.damage = 1
